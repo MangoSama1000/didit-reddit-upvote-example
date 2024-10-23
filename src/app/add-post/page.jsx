@@ -13,6 +13,7 @@ export default async function Home() {
     const content = formData.get("content");
     const title = formData.get("title");
     const userId = session?.user?.id;
+    
     if (!userId) {
       throw new Error("You need to login");
     }
@@ -24,6 +25,19 @@ export default async function Home() {
 
     revalidatePath("/");
     redirect("/");
+  }
+
+  async function handleVote(postId) {
+    const userId = session?.user?.id;
+
+    if (!userId) {
+      redirect('/ErrorPage'); 
+    }
+
+    try {
+    } catch (error) {
+      console.error('Voting error:', error);
+    }
   }
 
   if (!session) {
